@@ -8,6 +8,7 @@
 - F8: Show the Query History Viewer.
 - F9, ctrl+b: Toggle the sidebar.
 - F10: Toggle full screen mode for the current widget.
+- F12: Open Adapter Details screen.
 - ctrl+e: Write the returned data to a CSV, Parquet, or JSON file.
 - ctrl+r: Refresh the Data Catalog.
 

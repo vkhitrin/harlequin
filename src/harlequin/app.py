@@ -46,6 +46,7 @@ from harlequin.components import (
     HistoryScreen,
     ResultsViewer,
     RunQueryBar,
+    AdapterDetailsScreen,
     export_callback,
 )
 from harlequin.copy_formats import HARLEQUIN_COPY_FORMATS, WINDOWS_COPY_FORMATS
@@ -144,6 +145,7 @@ class Harlequin(App, inherit_bindings=False):
         Binding("ctrl+b", "toggle_sidebar", "Toggle Sidebar", show=False),
         Binding("f9", "toggle_sidebar", "Toggle Sidebar", show=False),
         Binding("f10", "toggle_full_screen", "Toggle Full Screen Mode", show=False),
+        Binding("f12", "show_adapter_details_screen", "Adapter Details"),
         Binding("ctrl+e", "export", "Export Data", show=False),
         Binding("ctrl+r", "refresh_catalog", "Refresh Data Catalog", show=False),
     ]
@@ -720,6 +722,16 @@ class Harlequin(App, inherit_bindings=False):
 
     def action_show_help_screen(self) -> None:
         self.push_screen(HelpScreen(id="help_screen"))
+
+    def action_show_adapter_details_screen(self) -> None:
+        if self.adapter.provides_details:
+            test = self.adapter.ADAPTER_DETAILS
+        else:
+            test = "Adapter did not provide any details."
+
+        self.push_screen(
+            AdapterDetailsScreen(id="adapter_details_screen", details=test)
+        )
 
     def action_toggle_full_screen(self) -> None:
         self.full_screen = not self.full_screen
